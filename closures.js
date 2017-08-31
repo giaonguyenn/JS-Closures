@@ -231,8 +231,8 @@ var isNotAFriend = findPotentialFriends( friends );
 // method, find all potential second level friends as well as potential friends
 // from allUsers. */
 
-var potentialSecondLevelFriends = secondLevelFriends.filter(findPotentialFriends(friends));
-var allPotentialFriends = allUsers.filter(findPotentialFriends(friends));
+var potentialSecondLevelFriends = secondLevelFriends.filter(isNotAFriend);
+var allPotentialFriends = allUsers.filter(isNotAFriend);
 
 
 // /******************************************************************************\
@@ -255,13 +255,27 @@ var allPotentialFriends = allUsers.filter(findPotentialFriends(friends));
 //  Fix the code below to log the desired output.
 //  */
 
+// function timeOutCounter() {
+//   var count =0;
+//   for (var i = 0; i <= 5; i++) {
+//     setTimeout(function() {
+//       console.log(count);
+//       count++;
+//   }, i * 1000);
+//   }
+// }
+// timeOutCounter();
+
 function timeOutCounter() {
-  var count =0;
   for (var i = 0; i <= 5; i++) {
+    {function closure(count){
     setTimeout(function() {
-      console.log(count);
-      count++;
-  }, i * 1000);
+        console.log(count)
+    }, i * 1000)
+    }
+    closure(i);
+    }
   }
 }
+
 timeOutCounter();
